@@ -9,15 +9,15 @@ function binarySearch(arr, n) {
   } else if (arr[mid] === n) {
     return arr[mid];
   } else if (n < arr[mid]) {
-    binarySearch(arr.splice(0, mid), n);
+    return binarySearch(arr.splice(0, mid), n);
   } else {
-    binarySearch(arr.splice(mid, mid), n);
+    return binarySearch(arr.splice(mid, mid), n);
   }
 }
 
 //binarySearch([1, 3, 5, 6, 8, 9, 12, 14, 15, 16], 6);
 
-//recursive binary ssearch returning index on n
+//recursive binary search returning index on n
 function binarySearchForIndex(arr, n, clone) {
   const arrClone = clone || [...arr];
   let left = arr[0];
@@ -29,10 +29,10 @@ function binarySearchForIndex(arr, n, clone) {
   } else if (arr[mid] === n) {
     return arrClone.indexOf(n);
   } else if (n < arr[mid]) {
-    binarySearchForIndex(arr.splice(0, mid), n, arrClone);
+    return binarySearchForIndex(arr.splice(0, mid), n, arrClone);
   } else {
-    binarySearchForIndex(arr.splice(mid, mid), n, arrClone);
+    return binarySearchForIndex(arr.splice(mid, mid), n, arrClone);
   }
 }
 
-binarySearchForIndex([1, 3, 5, 6, 8, 9, 12, 14, 15, 16], 6);
+//binarySearchForIndex([1, 3, 5, 6, 8, 9, 12, 14, 15, 16], 6);
