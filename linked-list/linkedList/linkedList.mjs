@@ -106,7 +106,7 @@ export default class LinkedList {
     return deletedHead;
   }
 
-  find(value = undefined, callback = undefined) {
+  find({ value = undefined, callback = undefined }) {
     if (!this.head) {
       return null;
     }
