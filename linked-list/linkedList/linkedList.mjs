@@ -106,6 +106,9 @@ export default class LinkedList {
     return deletedHead;
   }
 
+  /**
+   * call find({ value: value}) or find({ callback: callback })
+   */
   find({ value = undefined, callback = undefined }) {
     if (!this.head) {
       return null;
@@ -149,13 +152,5 @@ const list = new LinkedList();
 list.append(123);
 list.append(234);
 list.append(345);
-list.prepend(777);
-list.append(456);
-list.append(567);
-
-const listB = new LinkedList();
-listB.append(111);
-listB.append(222);
-listB.append(345);
-listB.append(456);
-listB.append(567);
+list.find({ value: 234 });
+list.find(777);
