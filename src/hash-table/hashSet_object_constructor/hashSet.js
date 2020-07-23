@@ -1,12 +1,17 @@
-const bucketLimit = 100;
-
-const HashSet = function (limit = bucketLimit) {
-  this.limit = limit;
+const HashSet = function (defaultLimit = 100) {
+  this.limit = defaultLimit;
   this.buckets = new Array();
 };
 
 HashSet.prototype.hash = function (key) {
-  return key % this.limit;
+  let hashCode = 0,
+    str = key.toString();
+
+  for (let i = 0; i < str.length; i++) {
+    hashCode += str.charCodeAt(i);
+  }
+
+  return hashCode % this.limit;
 };
 
 HashSet.prototype.add = function (key) {
@@ -47,3 +52,5 @@ HashSet.prototype.contains = function (key) {
     return false;
   }
 };
+
+module.exports = HashSet;
