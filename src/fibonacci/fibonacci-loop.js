@@ -1,14 +1,11 @@
 function fibonacci(n) {
-  let a = 1,
-    b = 1,
-    temp;
+  const sequence = [0, 1];
 
-  while (n >= 0) {
-    temp = a;
-    a = a + b;
-    b = temp;
-    n--;
+  for (let i = 2; i <= n; i++) {
+    sequence.push(sequence[i - 2] + sequence[i - 1]);
   }
 
-  return b;
+  return sequence[n];
 }
+
+module.exports = fibonacci;
