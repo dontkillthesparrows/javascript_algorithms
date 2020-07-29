@@ -28,15 +28,17 @@ class BinarySearchTreeNode {
       this.value = value;
       this.data = data;
 
-      return null;
+      return this;
     }
+
+    const newNode = new BinarySearchTreeNode(value, data);
 
     if (value < this.value) {
       if (this.left) {
         return this.left.insert(value, data);
       }
 
-      return this.setLeft(new BinarySearchTreeNode(value, data));
+      this.setLeft(newNode);
     }
 
     if (value > this.value) {
@@ -44,36 +46,70 @@ class BinarySearchTreeNode {
         return this.right.insert(value, data);
       }
 
-      return this.setRight(new BinarySearchTreeNode(value, data));
+      this.setRight(newNode);
     }
 
-    return this;
+    return newNode;
   }
 
-  remove() {}
+  remove(value) {
+    const removedNode = this.find(value);
 
-  traverseInOrder() {}
+    if (!removedNode) {
+      throw new Error('node does not exist in tree');
+    }
+
+    const { parent } = removedNode;
+
+    if (!removedNode.left && !removedNode.right) {
+      //no children
+      if (parent) {
+        parent.removeChild(removedNode.value);
+      } else {
+        this.setValue(undefined);
+      }
+    } else if (removedNode.left && removedNode.right) {
+      //two children
+      const nextBiggerNode = removedNode.right.findMin();
+      if (nextBiggerNode !== removedNode.right) {
+        this.remove(nextBiggerNode.value);
+        removedNode.setValue(nextBiggerNode.value).setData(nextBiggerNode.data);
+      } else {
+        removedNode
+          .setValue(removedNode.right.value)
+          .setData(removedNode.right.data);
+        removedNode.setRight(removedNode.right.right);
+      }
+    } else {
+      //one child
+      const child = removedNode.left || removedNode.right;
+
+      if (parent) {
+        parent.replaceChild(removedNode, child);
+      } else {
+        BinarySearchTreeNode.copyNode(removedNode, child);
+      }
+    }
+
+    return true;
+  }
 
   setLeft(node) {
-    if (!this.left) {
-      this.left = node;
-    }
-
-    if (!node.parent) {
+    if (node) {
       node.parent = this;
     }
+
+    this.left = node;
 
     return node;
   }
 
   setRight(node) {
-    if (!this.right) {
-      this.right = node;
-    }
-
-    if (!node.parent) {
+    if (node) {
       node.parent = this;
     }
+
+    this.right = node;
 
     return node;
   }
@@ -90,19 +126,90 @@ class BinarySearchTreeNode {
     return this;
   }
 
-  contains() {}
+  contains(value) {
+    return this.find(value) ? true : false;
+  }
 
-  removeChild() {}
+  removeChild(value) {
+    if (this.left && this.left.value === value) {
+      this.left = null;
 
-  replaceCild() {}
+      return true;
+    }
 
-  static copyNode() {}
+    if (this.right && this.right.value === value) {
+      this.right = null;
 
-  findMin() {}
+      return true;
+    }
 
-  findMax() {}
+    return false;
+  }
 
-  toString() {}
+  replaceChild(childToRemove, newChild) {
+    if (!childToRemove && !newChild) {
+      return false;
+    }
+
+    if (this.left && this.left === childToRemove) {
+      this.left = newChild;
+      newChild.parent = this;
+
+      return true;
+    }
+
+    if (this.right && this.right === childToRemove) {
+      this.right = newChild;
+      newChild.parent = this;
+
+      return true;
+    }
+
+    return false;
+  }
+
+  static copyNode(target, source) {
+    target.setValue(source.value);
+    target.setData(source.data);
+    target.setLeft(source.left);
+    target.setRight(source.right);
+  }
+
+  findMin() {
+    if (!this.left) {
+      return this;
+    }
+
+    return this.left.findMin();
+  }
+
+  findMax() {
+    if (!this.right) {
+      return this;
+    }
+
+    return this.right.findMin();
+  }
+
+  traverseInOrder() {
+    let traverse = [];
+
+    if (this.left) {
+      traverse = traverse.concat(this.left.traverseInOrder());
+    }
+
+    traverse.push(this.value);
+
+    if (this.right) {
+      traverse = traverse.concat(this.right.traverseInOrder());
+    }
+
+    return traverse;
+  }
+
+  toString() {
+    return this.traverseInOrder().toString();
+  }
 }
 
 module.exports = BinarySearchTreeNode;
