@@ -1,5 +1,3 @@
-const { isModuleSpecifier } = require('@babel/types');
-
 class BinarySearchTreeNode {
   constructor(value = null, data = null) {
     this.value = value;
@@ -80,9 +78,17 @@ class BinarySearchTreeNode {
     return node;
   }
 
-  setData() {}
+  setData(data) {
+    this.data = data;
 
-  setValue() {}
+    return this;
+  }
+
+  setValue(value) {
+    this.value = value;
+
+    return this;
+  }
 
   contains() {}
 

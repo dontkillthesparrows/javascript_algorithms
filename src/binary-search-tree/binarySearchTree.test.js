@@ -19,3 +19,28 @@ test('should insert nodes in right place and find them', () => {
   expect(tree.find(360).value).toBe(360);
   expect(tree.find(365).value).toBe(365);
 });
+
+test('should set data to existing node', () => {
+  const tree = new BinarySearchTree();
+
+  expect(tree.insert(350)).toBe(null);
+  expect(tree.insert(345).value).toBe(345);
+  expect(tree.find(345).setData('bumbibjörnarna')).toEqual(
+    expect.objectContaining({
+      value: 345,
+      data: 'bumbibjörnarna',
+    })
+  );
+});
+
+test('should update value on existing node', () => {
+  const tree = new BinarySearchTree();
+
+  expect(tree.insert(350)).toBe(null);
+  expect(tree.insert(345).value).toBe(345);
+  expect(tree.find(345).setValue(346)).toEqual(
+    expect.objectContaining({
+      value: 346,
+    })
+  );
+});
