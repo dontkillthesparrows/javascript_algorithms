@@ -26,8 +26,6 @@ class BinarySearchTreeNode {
   }
 
   insert(value, data) {
-    //find the right place for the node then setLeft or SetRight
-
     if (!this.value) {
       this.value = value;
       this.data = data;
@@ -35,16 +33,12 @@ class BinarySearchTreeNode {
       return null;
     }
 
-    const newNode = new BinarySearchTreeNode(value, data);
-
     if (value < this.value) {
       if (this.left) {
         return this.left.insert(value, data);
       }
 
-      this.setLeft(newNode);
-
-      return newNode;
+      return this.setLeft(new BinarySearchTreeNode(value, data));
     }
 
     if (value > this.value) {
@@ -52,9 +46,7 @@ class BinarySearchTreeNode {
         return this.right.insert(value, data);
       }
 
-      this.setRight(newNode);
-
-      return newNode;
+      return this.setRight(new BinarySearchTreeNode(value, data));
     }
 
     return this;

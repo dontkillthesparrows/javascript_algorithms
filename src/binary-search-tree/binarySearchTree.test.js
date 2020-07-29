@@ -1,4 +1,3 @@
-const binarySearchTreeNode = require('./binarySearchTreeNode');
 const BinarySearchTree = require('./binarySearchTree');
 
 test('should insert nodes in right place and find them', () => {
@@ -12,6 +11,7 @@ test('should insert nodes in right place and find them', () => {
   expect(tree.insert(355).value).toBe(355);
   expect(tree.insert(360).value).toBe(360);
   expect(tree.insert(365).value).toBe(365);
+  expect(tree.insert(345).value).toBe(345);
 
   expect(tree.find(345).value).toBe(345);
   expect(tree.find(330).value).toBe(330);

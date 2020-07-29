@@ -19,7 +19,7 @@ module.exports = BinarySearchTree;
 const tree = new BinarySearchTree();
 tree.insert(350);
 tree.insert(345);
-tree.insert(340);
+tree.insert(345);
 tree.insert(335);
 tree.insert(330);
 tree.insert(355);
