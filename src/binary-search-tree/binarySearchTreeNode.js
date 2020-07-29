@@ -1,3 +1,5 @@
+const { isModuleSpecifier } = require('@babel/types');
+
 class BinarySearchTreeNode {
   constructor(value = null, data = null) {
     this.value = value;
@@ -23,15 +25,68 @@ class BinarySearchTreeNode {
     return null;
   }
 
-  insert() {}
+  insert(value, data) {
+    //find the right place for the node then setLeft or SetRight
+
+    if (!this.value) {
+      this.value = value;
+      this.data = data;
+
+      return null;
+    }
+
+    const newNode = new BinarySearchTreeNode(value, data);
+
+    if (value < this.value) {
+      if (this.left) {
+        return this.left.insert(value, data);
+      }
+
+      this.setLeft(newNode);
+
+      return newNode;
+    }
+
+    if (value > this.value) {
+      if (this.right) {
+        return this.right.insert(value, data);
+      }
+
+      this.setRight(newNode);
+
+      return newNode;
+    }
+
+    return this;
+  }
 
   remove() {}
 
   traverseInOrder() {}
 
-  setLeft() {}
+  setLeft(node) {
+    if (!this.left) {
+      this.left = node;
+    }
 
-  setRight() {}
+    if (!node.parent) {
+      node.parent = this;
+    }
+
+    return node;
+  }
+
+  setRight(node) {
+    if (!this.right) {
+      this.right = node;
+    }
+
+    if (!node.parent) {
+      node.parent = this;
+    }
+
+    return node;
+  }
 
   setData() {}
 
@@ -51,3 +106,5 @@ class BinarySearchTreeNode {
 
   toString() {}
 }
+
+module.exports = BinarySearchTreeNode;
