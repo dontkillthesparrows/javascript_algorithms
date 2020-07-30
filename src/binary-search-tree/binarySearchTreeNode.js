@@ -188,7 +188,7 @@ class BinarySearchTreeNode {
       return this;
     }
 
-    return this.right.findMin();
+    return this.right.findMax();
   }
 
   traverseInOrder() {
