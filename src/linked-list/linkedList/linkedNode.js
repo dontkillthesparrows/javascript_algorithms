@@ -1,4 +1,4 @@
-export default class ListNode {
+class ListNode {
   constructor(value, next = null) {
     this.value = value;
     this.next = next;
@@ -8,3 +8,5 @@ export default class ListNode {
     return callback ? callback(this.value) : `${this.value}`;
   };
 }
+
+module.exports = ListNode;

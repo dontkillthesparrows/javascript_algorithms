@@ -1,6 +1,6 @@
-import ListNode from './linkedNode.mjs';
+const ListNode = require('./linkedNode.js');
 
-export default class LinkedList {
+class LinkedList {
   constructor() {
     this.head = null;
     this.tail = null;
@@ -148,9 +148,4 @@ export default class LinkedList {
   }
 }
 
-const list = new LinkedList();
-list.append(123);
-list.append(234);
-list.append(345);
-list.find({ value: 234 });
-list.find(777);
+module.exports = LinkedList;
