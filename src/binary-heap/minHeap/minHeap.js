@@ -30,6 +30,7 @@ class MinHeap {
       )
     ) {
       this.swap(this.getParentIndex(index), index);
+      index = this.getParentIndex(index);
     }
   }
 
@@ -47,6 +48,18 @@ class MinHeap {
 
   peek() {
     return this.heapContainer[0];
+  }
+
+  find(target) {
+    const foundIndices = [];
+    let index = 0;
+    for (let item of this.heapContainer) {
+      if (item === target) {
+        foundIndices.push(index);
+      }
+      index++;
+    }
+    return foundIndices;
   }
 }
 
