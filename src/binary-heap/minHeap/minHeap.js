@@ -51,9 +51,3 @@ class MinHeap {
 }
 
 module.exports = MinHeap;
-
-const heap = new MinHeap();
-
-heap.add(3);
-heap.add(4);
-heap.add(1);
