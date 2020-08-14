@@ -1,7 +1,7 @@
 const {
   sortByPriority,
   sortDecendingThenPriority,
-} = require('./sortByPrioriy');
+} = require('./sortByPriority');
 
 test('should return sorted by priority', () => {
   const array = [

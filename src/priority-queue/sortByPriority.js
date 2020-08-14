@@ -18,13 +18,7 @@ const sortByPriority = function (array) {
 };
 
 const sortDecendingThenPriority = function (array) {
-  array.sort((a, b) => {
-    if (b[0] === a[0]) {
-      return a[1] - b[1];
-    } else {
-      return b[0] - a[0];
-    }
-  });
+  array.sort((a, b) => (b[0] === a[0] ? a[1] - b[1] : b[0] - a[0]));
 
   let container = [];
 
