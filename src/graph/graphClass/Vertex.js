@@ -5,9 +5,6 @@ class Vertex {
   }
 
   addEdge(edge) {
-    /*
-
-    */
     this.edges.add(edge);
 
     return this;
