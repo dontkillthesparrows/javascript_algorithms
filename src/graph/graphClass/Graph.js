@@ -73,7 +73,7 @@ class Graph {
   }
 
   toString() {
-    return [...this.vertices].map(([key, vertex]) => vertex).toString();
+    return [...this.vertices].map(([key, vertex]) => key).toString();
   }
 }
 
