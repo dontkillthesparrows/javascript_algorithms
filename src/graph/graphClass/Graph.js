@@ -71,6 +71,10 @@ class Graph {
 
     return edge ? edge : null;
   }
+
+  toString() {
+    return [...this.vertices].map(([key, vertex]) => vertex).toString();
+  }
 }
 
 module.exports = Graph;

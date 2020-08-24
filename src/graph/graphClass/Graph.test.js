@@ -172,4 +172,22 @@ describe('should have correct implementation', () => {
 
     expect(graph.getAllEdges()).toEqual(expect.arrayContaining([AB, AC]));
   });
+
+  test('should return a string representation of the graph', () => {
+    const graph = new Graph();
+
+    const A = new Vertex('A');
+    const B = new Vertex('B');
+    const C = new Vertex('C');
+    const D = new Vertex('D');
+
+    const AB = new Edge(A, B);
+    const AC = new Edge(A, C);
+
+    graph.addEdge(AB);
+    graph.addEdge(AC);
+    graph.addVertex(D);
+
+    expect(graph.toString()).toBe('A,B,C,D');
+  });
 });
